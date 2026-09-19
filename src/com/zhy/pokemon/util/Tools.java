@@ -26,4 +26,15 @@ public class Tools {
         }
     }
 
+    /**
+     *延迟给定时间
+     * @param time 延迟时间
+     */
+    public static void lazy(long time){
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

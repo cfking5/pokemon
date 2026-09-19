@@ -1,12 +1,14 @@
 package com.zhy.pokemon;
 
+import com.zhy.pokemon.level.LevelMap;
 import com.zhy.pokemon.util.Tools;
 
-public class Adventurer {
+public class Adventurer implements DisplayItem {
 
 
     public void start(){
         LevelMap levelmap = new LevelMap();
+        levelmap.addAdventurer(this);
         while(true){
                // System.out.println(levelmap.getCurrentRow() + "和" + levelmap.getCurrentCol());
                 levelmap.show();
@@ -34,5 +36,11 @@ public class Adventurer {
      */
     public void move(LevelMap map,char direct){
         map.getMap().move(Character.toUpperCase(direct));
+    }
+
+
+    @Override
+    public String getInformation() {
+        return "♀";
     }
 }
