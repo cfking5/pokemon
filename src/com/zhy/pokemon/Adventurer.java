@@ -2,12 +2,15 @@ package com.zhy.pokemon;
 
 import com.zhy.pokemon.level.LevelMap;
 import com.zhy.pokemon.util.Tools;
+import com.zhy.pokemon.item.Item;
+import com.zhy.pokemon.item.Treasure;
 
 public class Adventurer implements DisplayItem {
 
 
     public void start(){
         LevelMap levelmap = new LevelMap();
+
         levelmap.addAdventurer(this);
         while(true){
                // System.out.println(levelmap.getCurrentRow() + "和" + levelmap.getCurrentCol());
@@ -23,7 +26,18 @@ public class Adventurer implements DisplayItem {
                     }
                 }
                 else{
-                    move(levelmap,direct);
+                    Item item = (Item)levelmap.getPositionInformation(direct);
+                    if(item != null){
+                        item.setDiscovery(true);
+                        levelmap.show();
+
+                    }
+                    if(item instanceof Treasure){
+                        processTreasure(levelmap,direct);
+                    }
+                    else {
+                        levelmap.getMap().move(direct);
+                    }
                 }
 
         }
@@ -34,10 +48,22 @@ public class Adventurer implements DisplayItem {
      * @param map 地图
      * @param direct 方向按键
      */
-    public void move(LevelMap map,char direct){
+    private void move(LevelMap map,char direct){
         map.getMap().move(Character.toUpperCase(direct));
     }
 
+    private void processTreasure(LevelMap map,char direct){
+        System.out.println("发现宝箱，是否打开?Y/N");
+        char open = Tools.getInputChar();
+        if(Character.toUpperCase(open) == 'Y'){
+            Item item = new Treasure("天山雪莲");
+            System.out.println("获得" + item.getInformation());
+            map.getMap().move(direct);
+        }
+    }
+//    public Item discovery(char direct){
+//
+//    }
 
     @Override
     public String getInformation() {

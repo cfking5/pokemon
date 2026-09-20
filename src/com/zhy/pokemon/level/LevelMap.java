@@ -1,6 +1,7 @@
 package com.zhy.pokemon.level;
 
 import com.zhy.pokemon.DisplayItem;
+import com.zhy.pokemon.item.Treasure;
 import com.zhy.pokemon.util.Tools;
 import com.zhy.pokemon.Adventurer;
 
@@ -16,6 +17,10 @@ public class LevelMap {
      */
     private final DisplayItem[][] items = new DisplayItem[9][9];
 
+    public LevelMap(){
+        generate();
+    }
+
     /**
      * 添加冒险家
      * @param adventurer 冒险家
@@ -26,7 +31,20 @@ public class LevelMap {
         items[currentRow][currentCol] = adventurer;
     }
 
-    public DisplayItem getItemInformation(char direct){
+    /**
+     * 生成地图及物品
+     */
+    public void generate(){
+        Treasure treasure = new Treasure("宝箱");
+        items[1][1] = treasure;
+    }
+
+    /**
+     * 获取移动方向位置的信息
+     * @param direct 方向
+     * @return 目标位置上的物品
+     */
+    public DisplayItem getPositionInformation(char direct){
         int targetRow = currentRow, targetCol = currentCol;
         switch(direct){
             case 'A':
