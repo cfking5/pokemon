@@ -16,10 +16,10 @@ public class Adventurer implements DisplayItem {
                // System.out.println(levelmap.getCurrentRow() + "和" + levelmap.getCurrentCol());
                 levelmap.show();
                 System.out.println("请选择移动方向：W(上)、A(左)、S(下)、D(右)、E(退出)");
-                char direct = Tools.getInputChar();
+                 char direct = Character.toUpperCase(Tools.getInputChar());
                 if(direct == 'E'){
                     System.out.println("你确定要退出吗？ Y/N");
-                    char quit = Tools.getInputChar();
+                    char quit = Character.toUpperCase(Tools.getInputChar());
                     if(quit == 'Y'){
                         System.out.println("感谢使用小精灵冒险");
                         break;
@@ -36,7 +36,7 @@ public class Adventurer implements DisplayItem {
                         processTreasure(levelmap,direct);
                     }
                     else {
-                        levelmap.getMap().move(direct);
+                        levelmap.move(direct);
                     }
                 }
 

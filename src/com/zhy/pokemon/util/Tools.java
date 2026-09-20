@@ -1,5 +1,6 @@
 package com.zhy.pokemon.util;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Tools {
@@ -9,6 +10,7 @@ public class Tools {
      */
     public static final Scanner scanner = new Scanner(System.in);
 
+    public static final Random random = new Random();
     /**
      *从控制台获取一个字符
      * @return
@@ -36,5 +38,19 @@ public class Tools {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * 取min到max的随机数
+     * @param min 最小范围
+     * @param max 最大范围
+     * @return 随机数
+     */
+    public static int getRandomNumber(int min,int max){
+        return random.nextInt(max-min+1)+min;
+    }
+
+    public static int getRandomNumber(int max){
+        return getRandomNumber(0,max);
     }
 }

@@ -35,8 +35,15 @@ public class LevelMap {
      * 生成地图及物品
      */
     public void generate(){
-        Treasure treasure = new Treasure("宝箱");
-        items[1][1] = treasure;
+        int generatedTreasure = 0;
+        while(generatedTreasure < 3){
+           int index =Tools.getRandomNumber(2,items.length*items[0].length);
+           int row =index /items[0].length;
+           int col = index%items[0].length;
+            if(items[row][col] != null) continue;
+            items[row][col] = new Treasure("天山雪莲");
+            generatedTreasure++;
+        }
     }
 
     /**
