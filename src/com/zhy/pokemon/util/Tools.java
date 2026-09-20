@@ -3,6 +3,10 @@ package com.zhy.pokemon.util;
 import java.util.Random;
 import java.util.Scanner;
 
+import com.zhy.pokemon.HP;
+import com.zhy.pokemon.item.Item;
+import com.zhy.pokemon.pokemon.Bikachu;
+
 public class Tools {
 
     /**
@@ -52,5 +56,20 @@ public class Tools {
 
     public static int getRandomNumber(int max){
         return getRandomNumber(0,max);
+    }
+
+    /**
+     * 获得一个随机物品,包括精灵，药品，装备(暂时没做)
+     * @return 获得的物品
+     */
+    public static Item getRandomItem(){
+        int number = getRandomNumber(2);
+
+        if(number == 0){//获得小精灵
+            return new Bikachu();
+        }
+        else{
+            return new HP(5);
+        }
     }
 }
