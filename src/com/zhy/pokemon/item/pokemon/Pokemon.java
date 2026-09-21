@@ -1,6 +1,7 @@
-package com.zhy.pokemon.pokemon;
+package com.zhy.pokemon.item.pokemon;
 
 import com.zhy.pokemon.item.Item;
+import com.zhy.pokemon.item.monster.Monster;
 
 public abstract class Pokemon extends Item {
 
@@ -35,6 +36,10 @@ public abstract class Pokemon extends Item {
         return currentHealth;
     }
 
+    public void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
+    }
+
     @Override
     public String getInformation() {
         return name + "：攻击=" + getAttack() + " 防御=" + getDefense() + " 生命值=" + getHealth();
@@ -57,4 +62,12 @@ public abstract class Pokemon extends Item {
         }
     }
 
+    public void attackMonster(Monster monster) {
+        int minusHealth = this.attack * this.attack / monster.getDefense();
+        if(minusHealth == 0) minusHealth = 1;
+        else if(minusHealth > monster.getCurrentHealth()) minusHealth = monster.getCurrentHealth();
+        int restHealth = monster.getCurrentHealth() - minusHealth;
+        monster.setCurrentHealth(restHealth);
+        System.err.println(name + "对" + monster.getName() + "发动攻击，造成了" + minusHealth + "伤害");
+    }
 }

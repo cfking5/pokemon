@@ -1,13 +1,13 @@
 package com.zhy.pokemon;
 
+import com.zhy.pokemon.item.monster.Monster;
 import com.zhy.pokemon.level.LevelMap;
-import com.zhy.pokemon.pokemon.Bikachu;
-import com.zhy.pokemon.pokemon.Pokemon;
+import com.zhy.pokemon.item.pokemon.Bikachu;
+import com.zhy.pokemon.item.pokemon.Pokemon;
 import com.zhy.pokemon.util.Tools;
 import com.zhy.pokemon.item.Item;
 import com.zhy.pokemon.item.Treasure;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class Adventurer implements DisplayItem {
@@ -61,6 +61,9 @@ public class Adventurer implements DisplayItem {
                     if(item instanceof Treasure){
                         processTreasure(levelmap,direct,(Treasure)item);
                     }
+                    else if(item instanceof Monster){
+
+                    }
                     else {
                         levelmap.move(direct);
                     }
@@ -91,6 +94,18 @@ public class Adventurer implements DisplayItem {
             System.out.println("获得" + item.getInformation());
             processItem(item);
             map.move(direct);
+        }
+    }
+
+    private void processMonster(LevelMap map,char direct,Monster monster){
+        System.out.println("发现" + monster.getInformation() + "，是否战斗?Y/N");
+        char op = Character.toUpperCase(Tools.getInputChar());
+        if(op == 'Y'){
+            for(int i = 0;i < pokemons.length;i++){
+                System.out.println((i+1) + "\t" + pokemons[i].getInformation());
+            }
+            System.out.println("请选择出战小精灵: ");
+
         }
     }
 //    public Item discovery(char direct){

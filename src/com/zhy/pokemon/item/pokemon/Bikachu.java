@@ -1,4 +1,4 @@
-package com.zhy.pokemon.pokemon;
+package com.zhy.pokemon.item.pokemon;
 
 public class Bikachu extends Pokemon {
 

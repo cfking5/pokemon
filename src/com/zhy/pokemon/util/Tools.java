@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import com.zhy.pokemon.HP;
 import com.zhy.pokemon.item.Item;
-import com.zhy.pokemon.pokemon.Bikachu;
+import com.zhy.pokemon.item.pokemon.Bikachu;
 
 public class Tools {
 
@@ -32,6 +32,23 @@ public class Tools {
         }
     }
 
+    public static int getInputInt(int min,int max){
+        while(true){
+            if(scanner.hasNextInt()){
+                int num = scanner.nextInt();
+                if(num >= min && num <= max){
+                    return num;
+                }
+                else{
+                    System.out.println("输入错误，请输入" + min + "~" + max + "之间的整数");
+                }
+            }
+            else{
+                System.out.println("输入错误，请输入" + min + "~" + max + "之间的整数");
+                scanner.next();
+            }
+        }
+    }
     /**
      *延迟给定时间
      * @param time 延迟时间
